@@ -17,7 +17,13 @@ public class App {
 
         System.out.println(APOSTAPERGUNTA);
         opcaoEscolha = scan.nextLine();
-        condicao = opcaoEscolha.toUpperCase().equals("S") ? true : false;
+        condicao = opcaoEscolha.toUpperCase().equals("S") || opcaoEscolha.toUpperCase().equals("N") ? true : false;
+        while (!condicao) {//loop para a pesso aceita ou não, no caso S/N se digitar outra letra fica no loop infinito
+            System.out.println("Digite S/N\n" + APOSTAPERGUNTA);
+            opcaoEscolha = scan.nextLine();
+            condicao = opcaoEscolha.toUpperCase().equals("S") || opcaoEscolha.toUpperCase().equals("N") ? true : false;
+        }
+        condicao = condicao && opcaoEscolha.toUpperCase().equals("S") ? true : false;
         // opcao de aposta, caso não queira aposta o programa acaba aqui!!!
 
         while (condicao) {
@@ -68,8 +74,8 @@ public class App {
                           System.out.print("_");
                         }
                     }
-                    // Verificar se o cavalo vai cruzar a linha de chegada
-                    if (posicoesIniciais[i] >= TAMANHOPISTA) {
+                    System.out.println(); // Isso vai imprimir uma nova linha após a pista de cada cavalo
+                    if (posicoesIniciais[i] >= TAMANHOPISTA) {// Verificar se o cavalo vai cruzar a linha de chegada
                         chegada = true; // Marcar a chegada para sair do loop
                         posicoesIniciais[i] = TAMANHOPISTA - 1; // Ajustar posição para exatamente no fim da pista
                         //identifica o cavalo da chegada, e aplica a string da cor
@@ -89,15 +95,15 @@ public class App {
                         }
                     }else {
                         // velocidade aleatoria dos cavalos, dando mais competividade
-                        velocidadeCavalos[i]= random.nextInt(1,4);
+                        velocidadeCavalos[i]= random.nextInt(2,6);
                         // Atualizar posição se a corrida não terminou
                         posicoesIniciais[i] += velocidadeCavalos[i];
                     }
-                }
+                }//FOR I
                 if (!chegada) {
                     Thread.sleep(400); // Só dorme se a corrida não tiver terminado
                 }
-            }
+            }//WHILE
             // se o cavalo campeão for igual o escolhido a aposta é duplicada
             boolean cavaloEscolhaCampeao = cavaloCampeao.toUpperCase().equals(escolhaCavalo.toUpperCase()) ? true : false;
             if (cavaloEscolhaCampeao) {
@@ -110,7 +116,15 @@ public class App {
             //pergunta se o usuario deje continuar apostando
             System.out.println(CONTINUARAPOSTA);
             opcaoEscolha = scan.nextLine();
-            condicao = opcaoEscolha.toUpperCase().equals("S") ? true : false;
+            condicao = opcaoEscolha.toUpperCase().equals("S") || opcaoEscolha.toUpperCase().equals("N") ? true : false;
+            while (!condicao) {// loop para a pesso aceita ou não, no caso S/N se digitar outra letra fica no
+                               // loop infinito
+                System.out.println("Digite S/N\n" + CONTINUARAPOSTA);
+                opcaoEscolha = scan.nextLine();
+                condicao = opcaoEscolha.toUpperCase().equals("S") || opcaoEscolha.toUpperCase().equals("N") ? true
+                        : false;
+            }
+            condicao = condicao && opcaoEscolha.toUpperCase().equals("S") ? true : false;
 
         }
         scan.close();//fecha o Scanner
