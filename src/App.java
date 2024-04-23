@@ -52,15 +52,16 @@ public class App {
                 System.out.print("\033[H\033[2J"); // Limpa a tela
                 System.out.flush();// limpa o buffer de saida
 
-                for (int i = 0; i < cavalos.length; i++) {// esse é o for que percorre os cavalos o i é o cavalo atual
+                // esse é o for que percorre os cavalos o i é o cavalo atual
+                for (int i = 0; i < cavalos.length; i++) {
                     // verifica se a cor do cavalo é a que o usurio escolheu, se sim acrescenta o valor apostado
                     if(escolhaCavalo.toUpperCase().equals(corCavalo[i])){
-                    System.out.print(corCavalo[i]+" R$"+ valorAposta + ":\n\n");
+                        System.out.print(corCavalo[i]+" R$"+ valorAposta + ":\n\n");
                     }else{
                         System.out.print(corCavalo[i] + ":\n\n");
                     }
-
-                    for (int j = 0; j < TAMANHOPISTA; j++) {// nesse for vai printar onde o cavalo esta de acordo com as posições, caso nao seja um cavalo ele vai printa a pista "_"
+                    // nesse for vai printar onde o cavalo esta de acordo com as posições, caso nao seja um cavalo ele vai printa a pista "_"
+                    for (int j = 0; j < TAMANHOPISTA; j++) {
                         if (j == posicoesIniciais[i]) {
                           System.out.print(cavalos[i]);
                         } else {
@@ -86,14 +87,13 @@ public class App {
                                 cavaloCampeao = corCavalo[3];
                                 break;
                         }
-                    } else {
+                    }else {
                         // velocidade aleatoria dos cavalos, dando mais competividade
                         velocidadeCavalos[i]= random.nextInt(1,4);
                         // Atualizar posição se a corrida não terminou
                         posicoesIniciais[i] += velocidadeCavalos[i];
                     }
                 }
-
                 if (!chegada) {
                     Thread.sleep(400); // Só dorme se a corrida não tiver terminado
                 }
